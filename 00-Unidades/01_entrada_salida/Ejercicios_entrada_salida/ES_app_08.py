@@ -45,10 +45,12 @@ class App(customtkinter.CTk):
         operador_a_numero = int(operador_a_texto)
         operador_b_numero = int(operador_b_texto)
         resultado = operador_a_numero % operador_b_numero
-        alert("Calculadora", f"el resto es {resultado}")
+        alert("Resto", "El resto de dividir {} por {} es: {}".format(operador_a_numero, operador_b_numero, resultado))
 
-        
-        
+#es lo mismo que ya se venia haciendo solo que ahora se usa el % para calcular el resto de la division
+#str: para cadenas de texto
+#int: para numeros enteros ej edad
+#float: para numeros con decimal ej dinero    
     
 if __name__ == "__main__":
     app = App()

@@ -33,9 +33,14 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        pass
+        sueldo_inicial = float(self.txt_sueldo.get())
+        incremento = sueldo_inicial * 0.15 #aumento del 15%
+        sueldo_final = sueldo_inicial + incremento
+        alert("incremento de sueldo", f"el incremento del 15% es de: {sueldo_final}") 
         
-    
+#se usa float para los numeros con coma por ej el sueldo, 
+#para que un numero sea decimal tiene que ir con .    
+
 if __name__ == "__main__":
     app = App()
     app.geometry("300x300")

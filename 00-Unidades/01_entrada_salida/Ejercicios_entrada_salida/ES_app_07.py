@@ -79,6 +79,8 @@ class App(customtkinter.CTk):
         operador_b_numero = int(operador_b_texto)
         resultado = operador_a_numero / operador_b_numero
         alert("Calculadora", f"el resultado de la division es {resultado}")
+
+#replico lo mismo que en el ejercicio anterio solamente que aca se agrega -, * y /
         
 if __name__ == "__main__":
     app = App()
