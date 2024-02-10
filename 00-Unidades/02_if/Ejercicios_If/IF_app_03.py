@@ -5,8 +5,8 @@ from tkinter.simpledialog import askstring as prompt
 import customtkinter
 
 '''
-nombre:
-apellido:
+nombre: Mateo
+apellido: Santiago
 ---
 Ejercicio: if_03
 ---
@@ -34,7 +34,16 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        pass
+        edad = int(self.txt_edad.get())
+        if edad >17:
+            alert("Mensaje", "Usted es mayor de edad, tiene {} años".format(edad))
+        else:
+            alert("Mensaje", "Usted es menor de edad, tiene {} años".format(edad))
+ 
+#se usa el "else" como comando cuando no se cumplen los requisitos del "if"
+#si no es if, es else
+
+        
 
         
         

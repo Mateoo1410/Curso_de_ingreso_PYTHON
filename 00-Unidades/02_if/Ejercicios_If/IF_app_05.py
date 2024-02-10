@@ -5,8 +5,8 @@ from tkinter.simpledialog import askstring as prompt
 import customtkinter
 
 '''
-nombre:
-apellido:
+nombre: Mateo
+apellido: Santiago
 ---
 Ejercicio: if_05
 ---
@@ -33,7 +33,13 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        pass
+        edad = int(self.txt_edad.get())
+        if edad < 12 or edad > 18:
+            alert("mensaje", "Usted no es adolescente")
+
+
+#podria usarse el not,  "if not(edad < 12 or edad > 18):"
+#se utiliza el "or" cuando se necesita una sola condicion para que se ejecute el "if"
 
         
         
