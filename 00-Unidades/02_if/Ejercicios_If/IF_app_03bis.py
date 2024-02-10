@@ -34,7 +34,7 @@ class App(customtkinter.CTk):
 
     def btn_mostrar_on_click(self):
         altura = float(self.txt_altura.get())
-        if altura >1.79:
+        if altura > 1.80:
             mensaje = ("Usted puede ser pivot, ya que mide {} metros".format(altura))
         else:
             mensaje = ("Usted no puede ser pivot, ya que mide {} metros".format(altura))

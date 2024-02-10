@@ -55,7 +55,7 @@ class App(customtkinter.CTk):
         primer_producto = float(self.txt_importe_1.get())
         segundo_producto = float(self.txt_importe_2.get())
         tercer_producto = float(self.txt_importe_3.get())
-        resultado = primer_producto + segundo_producto + tercer_producto
+        resultado = primer_producto + segundo_producto + tercer_producto #suma de productos
         alert("Suma de productos", resultado)
 
     def btn_promedio_on_click(self):
@@ -63,7 +63,7 @@ class App(customtkinter.CTk):
         segundo_producto = float(self.txt_importe_2.get())
         tercer_producto = float(self.txt_importe_3.get())
         suma_productos = primer_producto + segundo_producto + tercer_producto
-        resultado = suma_productos / 3
+        resultado = suma_productos / 3 #promedio de los productos
         alert("Promedio de productos", resultado)
 
 
@@ -74,7 +74,7 @@ class App(customtkinter.CTk):
         segundo_producto = float(self.txt_importe_2.get())
         tercer_producto = float(self.txt_importe_3.get())
         suma_productos = primer_producto + segundo_producto + tercer_producto
-        incremento = suma_productos * 0.21
+        incremento = suma_productos * 0.21 #aumento porcentual de productos
         resultado = suma_productos + incremento
         alert("Suma y aumento IVA", resultado)
          
