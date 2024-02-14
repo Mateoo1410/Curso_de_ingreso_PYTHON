@@ -45,7 +45,7 @@ class App(customtkinter.CTk):
         numero_descuento = float(self.txt_descuento.get())
         descuento = precio_inicial * numero_descuento /100
         precio_final = precio_inicial - descuento #el - va porque es en decremento
-        alert("Descuento", "El precio final con el descuento del {}% es de {}%".format(numero_descuento, precio_final))
+        alert("Descuento", "El precio final con el descuento del {}% es de {}$".format(numero_descuento, precio_final))
 
 #lo mismo que en el otro ejercicio pero esta vez restando precio y descuento ya que es decremento        
 

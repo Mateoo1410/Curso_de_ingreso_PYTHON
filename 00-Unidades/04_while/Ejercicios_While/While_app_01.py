@@ -30,6 +30,7 @@ class App(customtkinter.CTk):
     
     def btn_mostrar_iteracion_on_click(self):
         pass
+        
     
     
 if __name__ == "__main__":

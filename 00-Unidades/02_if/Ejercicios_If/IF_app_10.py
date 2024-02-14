@@ -7,8 +7,8 @@ import random
 
 
 '''
-nombre:
-apellido:
+nombre: Mateo
+apellido: Santiago
 ---
 Ejercicio: if_10
 ---
@@ -32,8 +32,17 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        pass  
+        numero_aleatorio = random.randint(1, 10)
+
+        if numero_aleatorio in {6,7,8,9,10}:
+            mensaje = "Promocion directa, la nota es de {}".format(numero_aleatorio)
+        elif numero_aleatorio in {4,5}:
+            mensaje = "Aprovado, la nota es de {}".format(numero_aleatorio)
+        else:
+            mensaje = "Desaprobado, la nota es de {}".format(numero_aleatorio)
+        alert("Resultados", mensaje)
             
+# El "in" se usa cuando se ponen dentro de corchetes algunos caracteres que se tienen que cumplir
 
 if __name__ == "__main__":
     app = App()
