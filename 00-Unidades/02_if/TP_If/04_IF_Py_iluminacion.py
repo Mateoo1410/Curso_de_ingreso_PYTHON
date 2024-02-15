@@ -47,7 +47,7 @@ class App(customtkinter.CTk):
         marca = self.combobox_marca.get()
         precio = 800
         precio_final = cantidad_lamparas * precio   # Se multiplican aca para mas abajo dividirlo con el if
-        descuento = 0
+        descuento = 0   # para despues añadir bien la variable
         
         #1
         if cantidad_lamparas >= 6:
@@ -55,7 +55,7 @@ class App(customtkinter.CTk):
         
         #2
         elif cantidad_lamparas == 5:
-            if marca == "ArgentinaLuz":
+            if marca == "ArgentinaLuz":  #es una condicion dentro de otra condicion "anidado de if"
                 descuento = 0.4
             else:
                 descuento = 0.3
@@ -65,7 +65,7 @@ class App(customtkinter.CTk):
             if marca == "ArgentinaLuz" or "FelipeLamparas":
                 descuento = 0.25
             else:
-                descuento = 0.2
+                descuento = 0.20
         
         #4
         elif cantidad_lamparas == 3:
@@ -76,14 +76,14 @@ class App(customtkinter.CTk):
             else:
                 descuento = 0.05
 
-        descuento_final = precio_final - (descuento * precio_final)
+        descuento_final = precio_final - (precio_final * descuento)
 
         descuento_adicional = 0
         if descuento_final > 4000:
             descuento_adicional = 0.05
-        total = descuento_final * (1 - descuento_adicional)
+        total_final = descuento_final - (descuento_final * descuento_adicional)
 
-        alert("Lamparas", "El total es de {}$".format(total))
+        alert("Lamparas", "El total es de {}$".format(total_final))
         
 
 

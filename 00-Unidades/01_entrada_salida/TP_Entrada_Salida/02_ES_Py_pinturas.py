@@ -57,7 +57,7 @@ class App(customtkinter.CTk):
     def btn_convertir_f_c_on_click(self):
         fahreinheit = float(self.txt_temperatura_f.get())
         centigrados = (fahreinheit - 32) * 5/9 #calculo para pasar °F a °C 
-        redondeo = round(centigrados, 1) #codigo para que no aparezca la misma cifra repetida dsp de la coma
+        redondeo = round(centigrados, 1) #codigo para que no aparezca la misma cifra repetida dsp de lacoma
         alert("Fahrenheit a Centigrados", "El cambio a Centigrados es de {}°C".format(redondeo))
 
     

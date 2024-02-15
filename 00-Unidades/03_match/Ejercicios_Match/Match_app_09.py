@@ -6,8 +6,8 @@ import customtkinter
 
 
 '''
-nombre:
-apellido:
+nombre: Mateo
+apellido: Santiago
 ---
 Ejercicio: Match_09
 ---
@@ -57,7 +57,36 @@ class App(customtkinter.CTk):
         
     
     def btn_informar_on_click(self):
-        pass
+        estacion = self.combobox_estaciones.get()
+        destino = self.combobox_destino.get()
+        estadia = 15000
+        
+        match estacion:
+            case "Invierno":
+                match destino:
+                    case "Bariloche":
+                        porcentaje = estadia * 1.20  #aumento del 20%
+                    case "Cataratas" | "Cordoba":
+                        porcentaje = estadia * 0.90  #descuento del 10%
+                    case "Mar del plata":
+                        porcentaje = estadia * 0.80  #descuento del 20%
+            case "Verano":
+                match destino:
+                    case "Bariloche":
+                        porcentaje = estadia * 0.80
+                    case "Cataratas" | "Cordoba":
+                        porcentaje = estadia * 1.10  #aumento del 10%
+                    case "Mar del plata":
+                        porcentaje = estadia * 1.20
+            case "Primavera" | "Otoño":
+                match destino:
+                    case "Bariloche" | "Cataratas" | "Mar del plata":
+                        porcentaje = estadia * 0.90
+                    case "Cordoba":
+                        porcentaje = estadia
+        alert("Vacaciones", "El precio para ir a {} en {} es de: {}$".format(estacion, destino, porcentaje))
+
+#El primer match es para todas las estaciones del año, se le agregan mas match para conseguir el "destino"
             
     
 if __name__ == "__main__":

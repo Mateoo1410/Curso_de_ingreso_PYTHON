@@ -5,8 +5,8 @@ from tkinter.simpledialog import askstring as prompt
 import customtkinter
 
 '''
-nombre:
-apellido:
+nombre: Mateo
+apellido: Santiago
 ---
 TP: Iluminación
 ---
@@ -43,7 +43,51 @@ class App(customtkinter.CTk):
 
 
     def btn_calcular_on_click(self):
-        pass
+        marca = self.combobox_marca.get()
+        cantidad = int(self.combobox_cantidad.get())
+        precio = 800
+        precio_total = cantidad * precio
+        descuento = 0
+
+
+        match cantidad:
+            case "1" | "2":
+                descuento = 0
+            case "3":
+                match marca:
+                    case "ArgentinaLuz":
+                        descuento = 0.15
+                    case "FelipeLamparas":
+                        descuento = 0.10
+                    case _:
+                        descuento = 0.05
+            case "4":
+                match marca:
+                    case "ArgentinaLuz" | "FelipeLamparas":
+                        descuento = 0.25
+                    case _:
+                        descuento = 0.20
+            case "5":
+                match marca:
+                    case "ArgentinaLuz":
+                        descuento = 0.40
+                    case _:
+                        descuento = 0.30
+            case "6" | "7" | "8" | "9" | "10" | "11" | "12":
+                descuento = 0.50
+        
+        descuento_final = precio_total - (precio_total * descuento)
+
+        descuento_adicional = 0
+        if descuento_final > 4000:
+            descuento = 0.05         #no se si esta bien porque use un if
+        precio_final = descuento_final - (descuento_final * descuento_adicional)
+
+        alert("Lamparas", "El precio final es de {}$".format(precio_final))
+
+        #el problema que tengo aca es que aunque cambie las marcas, sigo teniendo los mismos resultados
+        
+        
         
     
 if __name__ == "__main__":
