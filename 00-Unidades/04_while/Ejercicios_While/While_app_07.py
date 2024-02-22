@@ -5,8 +5,8 @@ from tkinter.simpledialog import askstring as prompt
 import customtkinter
 
 '''
-nombre:
-apellido:
+nombre: Mateo
+apellido: Santiago
 ---
 Ejercicio: while_07
 ---
@@ -36,8 +36,28 @@ class App(customtkinter.CTk):
 
 
     def btn_comenzar_ingreso_on_click(self):
-        pass
+        contador = 0
+        acumulador = 0
+        
+        while True:   #el "True" es para activar el bucle infinito
+            numero = prompt("mensaje", "ingrese numero")
+            
+            if numero == None: 
+                break   #si el usuario apreta el boton cancelar (none) con el break finaliza el bucle
+        
+            numero = int(numero)
+            
+            acumulador += numero  #es cuando se van juntando varios numeros
+            contador += 1  #para ir sumando de a 1 y llegar al final del bucle
+            
+            promedio = acumulador / contador
 
+            self.txt_suma_acumulada.delete(0, "end")
+            self.txt_suma_acumulada.insert(0, acumulador)
+            self.txt_promedio.delete(0, "end")
+            self.txt_promedio.insert(0, promedio)
+
+#en este ejercicio falta sumar los numeros ingresados
     
 if __name__ == "__main__":
     app = App()

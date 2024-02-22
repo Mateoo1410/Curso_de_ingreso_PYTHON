@@ -29,8 +29,11 @@ class App(customtkinter.CTk):
         
     
     def btn_pedir_clave_on_click(self):
-        pass
-    
+        clave = prompt("Clave", "Ingrese clave")
+        while clave != "utn750":  #while se usa para validar un dato
+            clave = prompt("Error", "Reingrese la clave") #esto es en caso de que se ingrese mal la clave
+        
+#while para que se ejecute el segundo prompt en bucle hasta que se ponga la clave correct-a
     
 if __name__ == "__main__":
     app = App()

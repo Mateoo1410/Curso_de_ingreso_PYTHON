@@ -63,10 +63,8 @@ class App(customtkinter.CTk):
                         mensaje = "Se viaja a Mar del plata y Cataratas"
                     case _:
                         mensaje = "No se viaja"
-            case "otoño":
-                match destino:
-                    case "Bariloche" | "Mar del plata" | "Cataratas" | "Cordoba":   
-                        mensaje = "Se viaja a todos los lugares"    #no me deja ejecutar el mensaje
+            case "Otoño":
+                mensaje = "Se viaja a todos los lugares"    
             case "Primavera":
                 match destino:
                     case "Bariloche":
@@ -75,7 +73,7 @@ class App(customtkinter.CTk):
                         mensaje = "Se viaja a todos los lugares menos Bariloche"
         alert("Vacaciones", mensaje)
         
-            
+#no me deja ejecutar el mensaje en el case "otoño"   
     
 if __name__ == "__main__":
     app = App()

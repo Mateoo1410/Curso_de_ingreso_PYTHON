@@ -6,8 +6,8 @@ import customtkinter
 
 
 '''
-nombre:
-apellido:
+nombre: Mateo
+apellido: Santiago
 ---
 Ejercicio: while_02bis
 ---
@@ -29,7 +29,20 @@ class App(customtkinter.CTk):
         
     
     def btn_mostrar_iteracion_on_click(self):
-        pass
+        contador_interaciones = 0  #variable para finalizar el bucle
+        contador_pares = 0        #se crean variables para luego sumarlas entre si
+        
+        while contador_interaciones <= 10:
+            
+            if contador_interaciones % 2 == 0: 
+                
+                contador_pares = contador_pares + contador_interaciones   #se hace la suma
+            
+            contador_interaciones += 1
+            #print(contador_interaciones)
+            
+        alert("Fin", contador_pares)
+        
     
     
 if __name__ == "__main__":

@@ -51,9 +51,9 @@ class App(customtkinter.CTk):
 
 
         match cantidad:
-            case "1" | "2":
+            case 1 | 2:
                 descuento = 0
-            case "3":
+            case 3:
                 match marca:
                     case "ArgentinaLuz":
                         descuento = 0.15
@@ -61,31 +61,31 @@ class App(customtkinter.CTk):
                         descuento = 0.10
                     case _:
                         descuento = 0.05
-            case "4":
+            case 4:
                 match marca:
                     case "ArgentinaLuz" | "FelipeLamparas":
                         descuento = 0.25
                     case _:
                         descuento = 0.20
-            case "5":
+            case 5:
                 match marca:
                     case "ArgentinaLuz":
                         descuento = 0.40
                     case _:
                         descuento = 0.30
-            case "6" | "7" | "8" | "9" | "10" | "11" | "12":
+            case 6 | 7 | 8 | 9 | 10 | 11 | 12:
                 descuento = 0.50
         
         descuento_final = precio_total - (precio_total * descuento)
 
         descuento_adicional = 0
         if descuento_final > 4000:
-            descuento = 0.05         #no se si esta bien porque use un if
+            descuento = 0.05         
         precio_final = descuento_final - (descuento_final * descuento_adicional)
 
         alert("Lamparas", "El precio final es de {}$".format(precio_final))
 
-        #el problema que tengo aca es que aunque cambie las marcas, sigo teniendo los mismos resultados
+        
         
         
         
