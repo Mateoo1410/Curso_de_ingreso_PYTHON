@@ -56,8 +56,7 @@ class App(customtkinter.CTk):
             self.txt_suma_acumulada.insert(0, acumulador)
             self.txt_promedio.delete(0, "end")
             self.txt_promedio.insert(0, promedio)
-
-#en este ejercicio falta sumar los numeros ingresados
+            
     
 if __name__ == "__main__":
     app = App()

@@ -5,8 +5,8 @@ from tkinter.simpledialog import askstring as prompt
 import customtkinter
 
 '''
-nombre:
-apellido:
+nombre: Mateo
+apellido: Santiago
 ---
 TP: While_validaciones_rising_btl
 ---
@@ -56,6 +56,8 @@ class App(customtkinter.CTk):
 
     def btn_validar_on_click(self):
         pass
+            
+        
 
 
 if __name__ == "__main__":

@@ -57,7 +57,6 @@ class App(customtkinter.CTk):
             self.txt_producto.delete(0, "end")
             self.txt_producto.insert(0, negativos)
 
-#no hace la * 
 #poner acumuladores de positivos y negativos
 
     
