@@ -1,0 +1,155 @@
+import tkinter
+from tkinter.messagebox import showinfo as alert
+from tkinter.messagebox import askyesno as question
+from tkinter.simpledialog import askstring as prompt
+import customtkinter
+import random
+
+'''
+nombre: Mateo
+apellido: Santiago
+---
+Ejercicio: Modelo de examen
+---
+Simulacro Turno Mañana
+
+Simulacro Turno Mañana
+Nos piden diseñar un sistema de control de ventas para una empresa de electrodomésticos. 
+(Teniendo en cuenta que no sabemos cuantas ventas hubo en total y que todos los datos deben ser ingresados por prompt y mostrados en un solo alert)
+
+Para ello los empleados deben ingresar:
+
+-Nombre del producto.
+
+-Tipo de producto (Celular o Computadora o Ventilador)
+
+-Precio del producto (No puede ser menor a $1000)
+
+-Día de la semana en el que se realizó la venta (La empresa no trabaja sábados ni domingos)
+
+En base a la información ingresada se debe informar:
+
++El porcentaje de productos que se vendieron por tipo.
+
++El nombre del producto más caro vendido.
+
++El nombre del producto mas barato vendido un viernes.
+
++Promedio de computadoras vendidas.
+
++Promedio de errores que ocurrieron durante la carga de datos (Ya sea al ingresar el tipo, el precio o el día de la venta, esto para controlar la eficiencia de los empleados al cargar las ventas)
+
+
+'''
+
+class App(customtkinter.CTk):
+    
+    def __init__(self):
+        super().__init__()
+
+        self.title("UTN Fra")
+
+        self.btn_mostrar = customtkinter.CTkButton(master=self, text="Mostrar", command=self.btn_mostrar_on_click)
+        self.btn_mostrar.grid(row=2, pady=20, columnspan=2, sticky="nsew")
+
+
+    def btn_mostrar_on_click(self):
+        contador_celular = 0
+        contador_computadora = 0
+        contador_ventilador = 0
+        acumulador_celular = 0
+        acumulador_computadora = 0
+        acumulador_ventilador = 0
+        contador_error = 0
+        producto_mas_barato = 0
+        nombre_mas_barato = ""
+        contador_productos = 0
+        precio_producto_mas_caro = 0
+        
+        bandera_primer_ingreso = True
+        seguir = True
+        while seguir == True:
+            nombre_producto = prompt("Nombre", "Ingrese nombre del producto")
+
+            #TIPO DE PRODUCTO
+            tipo_de_producto = prompt("Tipo", "Ingrese tipo de producto")
+            while tipo_de_producto != "celular" and tipo_de_producto != "computadora" and tipo_de_producto !=  "ventilador":
+                tipo_de_producto = prompt("Error", "Reingresar el tipo de producto")
+                contador_error += 1
+
+            #PRECIO DEL PRODUCTO
+            precio_producto = prompt("Precio", "Ingrese valor del producto")
+            precio_producto = int(precio_producto)
+            while precio_producto < 1000:
+                precio_producto = prompt("Error", "Reingrese precio del producto")
+                precio_producto = int(precio_producto)
+                contador_error += 1
+
+                #DIA EN QUE SE REALIZA LA VENTA
+            dia_semana = prompt("Dia", "Ingrese dia de la venta")
+            while dia_semana == "sabado" or dia_semana == "domingo":
+                dia_semana = prompt("Error", "Reingrese otro dia que no sea sabado ni domingo")
+                contador_error += 1
+
+                #CONTADOR TODOS LOS PRODUCTOS
+            match tipo_de_producto:
+                case "Celular":
+                        contador_celular += 1
+                case "Computadora":
+                        contador_computadora += 1
+                case "Ventilador":
+                        contador_ventilador += 1
+
+                #PRODUCTO MAS BARATO VENDIDO UN VIERNES
+            if dia_semana == "viernes" and (precio_producto < producto_mas_barato or bandera_primer_ingreso == True):
+                    producto_mas_barato = precio_producto
+                    nombre_mas_barato = nombre_producto
+                    
+
+            if bandera_primer_ingreso == True or precio_producto > precio_producto_mas_caro:
+                precio_producto_mas_caro = precio_producto
+                producto_mas_caro = nombre_producto
+                bandera_primer_ingreso = False
+                
+            contador_productos += 1   #Para que cuente la cantidad de veces que se ingresa el tipo de producto
+                
+            seguir = question("Mensaje", "Desea continuar?")
+                
+
+
+        total_productos = contador_ventilador + contador_celular + contador_computadora
+        porcentaje_celular = (contador_celular * 100) / total_productos
+        porcentaje_ventilador = (contador_ventilador * 100) / total_productos
+        porcentaje_computadora = (contador_computadora * 100) / total_productos
+
+        #PROMEDIO COMPUTADORAS
+        if contador_productos > 0:
+            promedio_computadoras = contador_computadora / contador_productos
+
+        #PROMEDIO DE ERRORES
+        if contador_productos > 0:
+            promedio_errores = contador_error / contador_productos
+
+        mensaje = f"Porcentaje de celulares vendidos {porcentaje_celular} \n Porcentaje de computadoras vendidas {porcentaje_computadora} \n Porcentaje de ventiladores vendidos {porcentaje_ventilador} \n Producto mas caro vendido: {producto_mas_caro} \n Producto mas barato vendido un viernes: {nombre_mas_barato} \n Promedio de computadoras vendidas: {promedio_computadoras} \n Promedio de errores: {promedio_errores}"
+
+        alert("Informatica", mensaje)
+
+
+
+# +El porcentaje de productos que se vendieron por tipo.
+
+# +El nombre del producto más caro vendido.
+
+# +El nombre del producto mas barato vendido un viernes.
+
+# +Promedio de computadoras vendidas.
+
+# +Promedio de errores que ocurrieron durante la carga de datos (Ya sea al ingresar el tipo, el precio o el día de la venta, esto para controlar la eficiencia de los empleados al cargar las ventas)
+
+
+
+
+if __name__ == "__main__":
+    app = App()
+    app.geometry("300x300")
+    app.mainloop()

@@ -15,7 +15,7 @@ Rising BTL. Empresa dedicada a la toma de datos para realizar estadísticas y ce
 por ventanas emergentes solamente (para evitar hacking y cargas maliciosas) y luego asignarla a cuadros de textos. 
 
 Los datos requeridos son los siguientes:
-    Apellido
+    Apellido     
     Edad, entre 18 y 90 años inclusive.
     Estado civil, ["Soltero/a", "Casado/a", "Divorciado/a", "Viudo/a"]
     Número de legajo, numérico de 4 cifras, sin ceros a la izquierda.
@@ -55,9 +55,37 @@ class App(customtkinter.CTk):
         self.btn_validar.grid(row=4, pady=20, columnspan=2, sticky="nsew")
 
     def btn_validar_on_click(self):
-        pass
-            
+        edad = 0
+        legajo = 0
+        Estado_civil = self.combobox_tipo.get()
         
+        bandera = True
+
+        while bandera == True:
+            apellido = prompt("ERROR", "Reingrese datos")
+            if apellido == None:
+                bandera = False
+                break
+            
+            else:
+                
+                edad = int(edad)
+                edad = prompt("Edad", "Ingrese edad")
+                if not (edad  >= 18 and edad <= 90):
+                    prompt("ERROR", "Reingrese edad")
+                else:
+                    legajo = int(legajo)
+                    legajo = prompt("Legajo", "Ingrese legajo")
+                    if  legajo < 1000 and legajo > 9999:
+                        prompt("ERROR", "Reingrese numero de legajo")
+                bandera = False
+        
+        self.txt_apellido.delete(0, "end")
+        self.txt_apellido.insert(0, apellido)
+        self.txt_edad.delete(0, "end")
+        self.txt_edad.insert(0, edad)
+        self.txt_legajo.delete(0, "end")
+        self.txt_legajo.insert(0, legajo)
 
 
 if __name__ == "__main__":
