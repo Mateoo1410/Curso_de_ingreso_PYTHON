@@ -7,8 +7,8 @@ import random
 
 
 '''
-nombre:
-apellido:
+nombre: Mateo
+apellido: Santiago
 ---
 Ejercicio: for_01
 ---
@@ -28,9 +28,11 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        pass 
-       
+        for i in range(1, 6):
+            alert("mensaje", i)
             
+#el i se usa como variable (la parte de arriba de un edificio donde empieza el bucle), el for siempre tiene un numero determinado de vueltas
+# "range" sirve para dar una determinada cantidad de vueltas con numeros
 
 if __name__ == "__main__":
     app = App()

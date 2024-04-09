@@ -5,8 +5,8 @@ from tkinter.simpledialog import askstring as prompt
 import customtkinter
 
 '''
-nombre:
-apellido:
+nombre: Mateo
+apellido: Santiago
 ---
 Ejercicio: for_03
 ---
@@ -32,7 +32,11 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        pass
+        repeticiones = int(self.txt_repetir.get())
+        for i in range(repeticiones):
+            alert("mensaje", "Hola UTN FRA")
+
+#se pide el contenido de la caja de texto y ese contenido va a dictar la cantidad de vueltas del for
 
         
     

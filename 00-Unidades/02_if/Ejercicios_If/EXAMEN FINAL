@@ -56,9 +56,9 @@ class App(customtkinter.CTk):
 
         contador_mascotas_ingresadas = 0
         contador_mascotas = 0
-        acumulador_exotico = 0
-        acumulador_gato = 0
-        acumulador_perro = 0
+        # acumulador_exotico = 0
+        # acumulador_gato = 0
+        # acumulador_perro = 0
         promedio_de_peso = 0
         promedio_peso_animales = 0
 
@@ -78,7 +78,7 @@ class App(customtkinter.CTk):
                 peso = int(peso)
             
             sexo = prompt("Sexo", "Ingrese sexo de la mascota")
-            while sexo != "F" and sexo != "M":
+            while sexo != "f" and sexo != "m":
                 sexo = prompt("Error", "Reingrese sexo de la mascota")
 
             edad = prompt("Edad", "Ingrese edad de la mascota")
@@ -103,9 +103,9 @@ class App(customtkinter.CTk):
                     acumulador_peso_exotico += peso
 
             match sexo:
-                case "F":
+                case "f":
                     contador_F += 1
-                case "M":
+                case "m":
                     contador_M += 1
 
             if peso > mayor_peso or bandera_primer_ingreso == True:
@@ -129,9 +129,8 @@ class App(customtkinter.CTk):
         porcentaje_M = (contador_M *100) /total_sexos
         porcentaje_F = (contador_F *100) /total_sexos
 
-        if contador_mascotas > 0:
-            promedio_de_peso = acumulador_exotico + acumulador_gato + acumulador_perro
-            promedio_peso_animales = (promedio_de_peso/contador_mascotas)
+        if contador_mascotas_ingresadas > 0:
+            promedio_peso_animales = (acumulador_peso_exotico + acumulador_peso_gato + acumulador_peso_perro) /contador_mascotas_ingresadas
 
 
         mensaje = f"{tipo_mas_ingresado} \n Porcentaje de mascotas femeninas: {porcentaje_F}% \n Porcentaje de mascotas masculinas: {porcentaje_M}% \n Tipo de la mascota más pesada: {tipo_mas_pesada} \n nombre del gato más joven: {nombre_mas_joven} \n Promedio de peso de mascotas: {promedio_peso_animales}kg"

@@ -6,26 +6,25 @@ import customtkinter
 import random
 
 '''
-nombre: Mateo
-apellido: Santiago
+nombre: Lautaro
+apellido: Melana
 ---
 EXAMEN FINAL
 ---
-De 5 mascotas que ingresan a una veterinaria se deben tomar y validar los siguientes datos.
-
+De 50 alumnos que ingresan a una facultad se deben tomar y validar los siguientes datos.
 Nombre
-Tipo (gato ,perro o exotico)
-Peso ( entre 10 y 80)
-Sexo( F o M )
-Edad(mayor a 0)
-
+Tipo (becado , no becado)
+altura ( entre 50 y 200 cm)
+Sexo( F o M o NB )
+Nota( entre 0 y 10)
+Edad(mayor a 18)
 Pedir datos por prompt y mostrar por print, se debe informar:
+Informe A-Que hay más? , becado o no becados
+Informe B- El porcentaje de estudiante que hay aprobados y no aprobados( más de nota 6)
+Informe C- El nombre y nota del estudiante más alto
+Informe D- El nombre del alumno de sexo masculino con mejor nota
+Informe E- El promedio de las notas de todos los alumnos
 
-Informe A- Cuál fue el tipo mas ingresado (gato ,perro o exotico)
-Informe B- El porcentaje de mascotas femeninas y el de las masculinas.
-Informe C -El tipo de la mascota más pesada
-Informe D- El nombre del gato más joven
-Informe E- El promedio de peso de todas las mascotas
 
 '''
 
@@ -41,7 +40,90 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        pass
+        contador_becado = 0
+        contador_no_becado = 0
+        contador_aprobados = 0
+        contador_desaprobados = 0
+        nota_mas_altura = 0
+        mayor_altura = 0
+        nombre_mas_altura = ""
+        mejor_nota = 0
+        nombre_mejor_nota = ""
+
+
+        bandera_primer_ingreso = 0
+        seguir = True
+        while seguir == True:
+            nombre = prompt("nombre", "ingrese su nombre")
+
+            tipo = prompt("tipo", "ingrese tipo")
+            while tipo != "becado" and tipo != "no becado":
+                tipo = prompt("error", "reingrese tipo")
+
+            sexo = prompt("sexo", "ingrese su sexo")
+            while sexo != "M" and sexo != "F" and sexo != "NB":
+                sexo = prompt ("error", "reingrese sexo")
+
+            altura = prompt("altura", "ingrese altura")
+            altura = int(altura)
+            while altura < 50 and altura > 200:
+                altura = prompt("error", "reingrese altura")
+                altura = int(altura)
+
+            nota = prompt("nota", "ingrese nota")
+            nota = int(nota)
+            while nota < 0 and nota > 10:
+                nota = prompt("error", "reingrese nota")
+                nota = int (nota)
+
+            edad = prompt("edad", "ingrese su edad")
+            edad = int(edad)
+            while edad < 18:
+                edad = prompt("error", "reingrese edad")
+                edad = int(edad)
+
+            match tipo:
+                case "becado":
+                    contador_becado += 1
+                case "no becado":
+                    contador_no_becado += 1
+
+            if nota > 6 and nota < 10:
+                contador_aprobados += 1
+
+            if nota < 6:
+                contador_desaprobados += 1
+
+            if altura > mayor_altura or bandera_primer_ingreso == True:
+                mayor_altura = altura
+                nota_mas_altura = nota
+                nombre_mas_altura = nombre
+                bandera_primer_ingreso = False
+
+            if sexo == "M" and (nota > mejor_nota or bandera_primer_ingreso == True):
+                mejor_nota = nota
+                nombre_mejor_nota = nombre
+                bandera_primer_ingreso = False
+
+            
+
+            seguir = question("mensaje", "desea continuar?")
+
+        aprobados_y_desaprobados = contador_aprobados + contador_desaprobados
+        porcentaje_aprobados = (contador_aprobados *100) /aprobados_y_desaprobados
+        porcentaje_desaprobados = (contador_desaprobados *100) /aprobados_y_desaprobados
+
+        if contador_becado > contador_no_becado:
+            contador_mas_elegido = "Becado"
+        else:
+            contador_mas_elegido = "No becado"
+
+        mensaje = f"Hay mayor cantidad de {contador_mas_elegido} \n Porcentaje de alumnos aprobados: {porcentaje_aprobados}% \n Porcentaje de alumnos desaprobados: {porcentaje_desaprobados}% \n Nombre del estudiante mas alto: {nombre_mas_altura} Nota: {nota_mas_altura} \n Masculino con mejor nota: {nombre_mejor_nota}"
+
+        alert("Facultad", mensaje)
+
+# Informe E- El promedio de las notas de todos los alumnos
+
 
 if __name__ == "__main__":
     app = App()

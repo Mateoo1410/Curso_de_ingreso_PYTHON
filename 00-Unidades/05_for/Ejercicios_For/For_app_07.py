@@ -5,8 +5,8 @@ from tkinter.simpledialog import askstring as prompt
 import customtkinter
 
 '''
-nombre:
-apellido:
+nombre: Mateo
+apellido: Santiago
 ---
 Ejercicio: for_07
 ---
@@ -26,8 +26,18 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        pass
+        bandera = True
+        numero = int(prompt("Mensaje", "Ingrese numero"))
         
+        for i in range(2,numero): #empieza del 2 ya que solo se busca numeros que no sean divisibles por 1 o por si mismos
+            if numero % i == 0:
+                bandera = False #si consigue un divisor quiere decir que no es primo y se rompe la bandera
+                break
+
+        if bandera == True:
+            alert("mensaje", f"{numero} ES un numero primo")
+        else:
+            alert("mensaje", f"{numero} NO es un numero primo")
     
 if __name__ == "__main__":
     app = App()

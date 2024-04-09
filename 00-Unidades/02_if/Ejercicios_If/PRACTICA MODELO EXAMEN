@@ -11,22 +11,21 @@ apellido: Santiago
 ---
 EXAMEN FINAL
 ---
-De 5 mascotas que ingresan a una veterinaria se deben tomar y validar los siguientes datos.
+Simulacro Turno Mañana
 
+Un famoso casino de mar del plata,  requiere una app para controlar el egreso de dinero durante una jornada. Para ello se ingresa por cada ganador:
 Nombre
-Tipo (gato ,perro o exotico)
-Peso ( entre 10 y 80)
-Sexo( F o M )
-Edad(mayor a 0)
+-Importe ganado (mayor o igual $1000)
+-Género (“Femenino”, “Masculino”, “Otro”)
+-Juego (Ruleta, Poker, Tragamonedas)
 
-Pedir datos por prompt y mostrar por print, se debe informar:
-
-Informe A- Cuál fue el tipo mas ingresado (gato ,perro o exotico)
-Informe B- El porcentaje de mascotas femeninas y el de las masculinas.
-Informe C -El tipo de la mascota más pesada
-Informe D- El nombre del gato más joven
-Informe E- El promedio de peso de todas las mascotas
-
+Necesitamos saber:
+A) Nombre y género de la persona que más ganó.
+B) Promedio de dinero ganado en Ruleta.
+C) Porcentaje de personas que jugaron en el Tragamonedas.
+D) Cuál es el juego menos elegido por los ganadores.
+E) Promedio de importe ganado de las personas que NO jugaron Poker, siempre y cuando el importe supere los $15000
+F) Porcentaje de dinero en función de cada juego.
 '''
 
 class App(customtkinter.CTk):
@@ -41,7 +40,97 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        pass
+        mayor_ganancia = 0
+        contador_ruleta = 0
+        acumulador_ruleta = 0
+        contador_tragamonedas = 0
+        contador_poker = 0
+        acumulador_poker = 0
+        acumulador_tragamonedas = 0
+        contador_no_poker = 0
+        acumulador_no_poker = 0
+        contador_juegos_ingresados = 0
+
+        nombre_mayor_ganancia = ""
+        genero_mayor_ganancia = ""
+        
+        bandera_primer_ingreso = True
+        seguir = True
+        while seguir == True:
+            nombre = prompt ("Nombre", "Ingrese nombre")
+
+            importe_ganado = prompt("Importe", "Ingrese importe ganado")
+            importe_ganado = int(importe_ganado)
+            while importe_ganado < 1000:
+                importe_ganado = prompt ("Error", "Reingrese importe ganado")
+                importe_ganado = int(importe_ganado)
+
+            genero = prompt("Genero", "Ingrese su genero")
+            while genero != "m" and genero != "f" and genero != "otro":
+                genero = prompt("Error", "Reingrese genero")
+
+            juego = prompt("Juego", "Ingrese juego")
+            while juego != "Poker" and juego != "Ruleta" and juego != "Tragamonedas":
+                juego = prompt("Error", "Reingrese juego")
+
+            if importe_ganado > mayor_ganancia or bandera_primer_ingreso == True:
+                mayor_ganancia = importe_ganado
+                nombre_mayor_ganancia = nombre
+                genero_mayor_ganancia = genero
+                bandera_primer_ingreso = False
+
+            match juego:
+                case "Ruleta":
+                    contador_ruleta += 1
+                    acumulador_ruleta += importe_ganado
+                case "Poker":
+                    contador_poker += 1
+                    acumulador_poker += importe_ganado
+                case "Tragamonedas":
+                    contador_tragamonedas += 1
+                    acumulador_tragamonedas += importe_ganado
+
+            if juego != "Poker" and importe_ganado > 15000:
+                contador_no_poker += 1
+                acumulador_no_poker += importe_ganado
+
+            contador_juegos_ingresados += 1
+
+            
+            
+            seguir = question("Mensaje", "Desea continuar?")
+
+        porcentaje_dinero_total = contador_poker + contador_ruleta + contador_tragamonedas
+        porcentaje_tragamonedas = (contador_tragamonedas *100) /porcentaje_dinero_total
+
+        if contador_ruleta != 0:
+            promedio_ruleta = acumulador_ruleta / contador_ruleta
+
+        if contador_tragamonedas < contador_poker and contador_tragamonedas < contador_ruleta:
+            juego_menos_elegido = "Tragamonedas"
+        elif contador_poker < contador_ruleta:
+            juego_menos_elegido = "Poker"
+        else:
+            juego_menos_elegido = "Ruleta"
+
+        promedio_no_poker = acumulador_no_poker/contador_no_poker
+
+
+        dinero_total = acumulador_poker + acumulador_ruleta + acumulador_tragamonedas
+        if contador_juegos_ingresados > 0:
+            promedio_total = dinero_total/contador_juegos_ingresados
+
+        porcentaje_dinero_total = acumulador_poker + acumulador_ruleta + acumulador_tragamonedas
+        porcentaje_dinero_ruleta = (acumulador_ruleta *100) /porcentaje_dinero_total
+        porcentaje_dinero_poker = (acumulador_poker *100) /porcentaje_dinero_total
+        porcentaje_dinero_tragamonedas = (acumulador_tragamonedas *100) /porcentaje_dinero_total
+
+        mensaje = f"Nombre y género de la persona que más ganó: {nombre_mayor_ganancia} {genero_mayor_ganancia} \n Promedio de dinero ganado en Ruleta: {promedio_ruleta} \n Porcentaje de personas que jugaron en el Tragamonedas: {porcentaje_tragamonedas} \n juego menos elegido por los ganadores: {juego_menos_elegido} \n Promedio de importe ganado de las personas que NO jugaron Poker: {promedio_no_poker} \n Porcentaje de dinero en Tragamonedas: {porcentaje_dinero_tragamonedas} \n Porcentaje de dinero en Poker {porcentaje_dinero_poker} \n Porcentaje de dinero en Ruleta: {porcentaje_dinero_ruleta}"
+
+        alert("Casino", mensaje)
+
+
+
 
 if __name__ == "__main__":
     app = App()

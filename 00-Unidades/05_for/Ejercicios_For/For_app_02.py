@@ -5,8 +5,8 @@ from tkinter.simpledialog import askstring as prompt
 import customtkinter
 
 '''
-nombre:
-apellido:
+nombre: Mateo
+apellido: Santiago
 ---
 Ejercicio: for_02
 ---
@@ -26,8 +26,10 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        pass
-       
+        for i in range(5, 0, -1): # el numero positivo al comienzo ya que va en descuento
+            alert ("mensaje", i)
+
+#en el tercer numero del range sirve para darle una condicion a las vueltas ej: si se quiere mostrar mensajes del 1 al 10 de par en par seria "range(0, 11, 2)"
             
 
 if __name__ == "__main__":

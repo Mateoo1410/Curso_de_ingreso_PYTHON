@@ -5,8 +5,8 @@ from tkinter.simpledialog import askstring as prompt
 import customtkinter
 
 '''
-nombre:
-apellido:
+nombre: Mateo
+apellido: Santiago
 ---
 Ejercicio: for_08
 ---
@@ -26,8 +26,25 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        pass
+        numero = int(prompt("mensaje", "ingrese un numero"))
+        bandera = True
+        contador = 0
+
+        for i in range(2, numero): #comienza desde el dos, el uno no se tiene en cuenta aca
+            if i>2:
+                for j in range(2,i -1): #se pone el if mayor que 2 para que en el -1 del range no rompa el codigo
+                    if i % j == 0:
+                        bandera = False
+                        break
+            if bandera:
+                contador += 1
+                alert("este numero es primo", i)
+            bandera = True
+        alert("mensaje", f"hay una cantiadad de {contador} numeros primos")
+#se pone bandera True ya que si la bandera queda establecida en False no toma ningun otro numero primo de los que quedan
     
+
+#para este ej se necesita colocar un for dentro del for asi por cada numero que vaya iterando calcula si es un numero primo o no
 if __name__ == "__main__":
     app = App()
     app.geometry("300x300")
