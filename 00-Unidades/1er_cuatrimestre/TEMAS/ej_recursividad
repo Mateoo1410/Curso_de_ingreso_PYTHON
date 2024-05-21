@@ -1,0 +1,9 @@
+"""
+1) Realizar una función recursiva que calcule la suma de los primeros números naturales (todos los números anteriores al recibido por parámetro)
+2) Realizar una función recursiva que calcule la potencia de un número
+3) Realizar una función recursiva que realice la suma de los dígitos de un número
+"""
+
+#1
+def sumar_naturales(numero:int)-> int:
+    pass
